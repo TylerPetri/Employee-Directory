@@ -1,9 +1,11 @@
 import './App.css';
 import Employees from './pages/employees'
 
-function App() {
+const App = () => {
   return (
-    <Employees/>
+    <div className="App">
+      <Employees></Employees>
+    </div>
   );
 }
 

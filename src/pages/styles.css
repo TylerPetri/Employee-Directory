@@ -1,0 +1,11 @@
+.schBtn {
+    background-color: rgb(134, 154, 189);
+    border-radius: 10px;
+    border: none;
+    height:50px;
+    width:100px;
+}
+
+.schBtn:hover {
+    cursor: pointer;
+}

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import './styles.css'
 import axios from 'axios'
 
 function getEmployees () {
@@ -27,7 +28,7 @@ function Employees() {
 
     return (
         <>
-        <button type="submit" onClick={handleFormSubmit}>Search</button>
+        <button type="submit" className="schBtn" onClick={handleFormSubmit}>Search</button>
         {/* <table>
             <tbody>
             <tr>
