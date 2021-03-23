@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import './styles.css'
 import axios from 'axios'
+import Filter from './cityFilter'
 
 
-function Employees() {
+function Table() {
 
     const [employees, setEmployees] = useState([])
     const [displayedList, setDisplayedList] = useState({
@@ -85,21 +85,10 @@ function Employees() {
 
     return (
         <>
-        <div className="jumbotron">Employee directory</div>
-        <h6 id="none">No results</h6>
-        <input id="form" list="cities" placeholder="Filter by city"></input>
-        <datalist id="cities">
-            {displayedList.results.map((person,idx) => {
-                return (
-                        <option key={idx} value={person.location.city}/>
-                    )
-                })
-            }
-        </datalist>
-        <div className="btns">
-            <button onClick={submitForm}>Search</button>
-            <button onClick={reset}>Reset</button>
-        </div>
+        <Filter displayedList={displayedList}
+                submitForm={submitForm}
+                reset={reset} />
+
         <table>
             <thead>
             <tr>
@@ -130,4 +119,4 @@ function Employees() {
     )
 }
 
-export default Employees;
+export default Table;
