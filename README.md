@@ -8,7 +8,7 @@ Your employee's information all in one place. Need to reach someone? Filter by n
 
 Deployed app: https://tylerpetri.github.io/Employee-Directory/
 
-![Homepage](images/Homepage.PNG)
+![Homepage](src/images/Homepage.PNG)
 
 ## Contributing
 
