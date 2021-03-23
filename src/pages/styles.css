@@ -1,11 +1,22 @@
-.schBtn {
-    background-color: rgb(134, 154, 189);
-    border-radius: 10px;
-    border: none;
-    height:50px;
-    width:100px;
+.jumbotron {
+    height:300px;
+    color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 200%;
+    font-family: 'Syne Mono';
 }
 
-.schBtn:hover {
-    cursor: pointer;
+table {
+    border-collapse: collapse;
+}
+
+table, td, th {
+    border: 2px solid rgb(134, 154, 189)
+}
+
+td, th{ 
+    padding: 10px;
 }
