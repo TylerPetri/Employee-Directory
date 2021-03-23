@@ -21,8 +21,35 @@ td, th{
     padding: 10px;
 }
 
-.sortClick{
+#here{
     cursor: pointer;
+}
+
+.sortClickPost{
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    border: none;
+}
+
+.triangle-up {
+    margin-left:15px;
+	width: 0;
+	height: 0;
+	border-left: 9px solid transparent;
+	border-right: 9px solid transparent;
+	border-bottom: 18px solid rgb(247, 113, 247);
+}
+
+.triangle-down {
+    margin-left:15px;
+	width: 0;
+	height: 0;
+	border-left: 9px solid transparent;
+	border-right: 9px solid transparent;
+	border-top: 18px solid rgb(247, 113, 247);
 }
 
 #none {
@@ -33,11 +60,22 @@ td, th{
 }
 
 input {
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
 .btns {
     display: inline-flex;
     margin-bottom: 10px;
     gap:12px;
+}
+
+button {
+    background-color:rgb(134, 154, 189);
+    color: white;
+    border: none;
+    outline: none;
+}
+
+button:hover {
+    opacity:.8
 }

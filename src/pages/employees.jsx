@@ -22,6 +22,9 @@ function Employees() {
 
     const sortByName = () => {
   
+        var el = document.getElementById('here')
+        var el2 = document.getElementById('triangle')
+
         const sortedEmployees = displayedList.results.sort((a, b) => {
             if (b.name.first > a.name.first) {
                 return -1
@@ -37,11 +40,17 @@ function Employees() {
                 results: sortedEmployees,
                 sortOrder: "ascend" 
             })
+            el.classList.add('sortClickPost')
+            el2.classList.add('triangle-up')
+            el2.classList.remove('triangle-down')
         } else {
             setDisplayedList({ 
                 results: sortedEmployees,
                 sortOrder: "descend" 
             })
+            el.classList.add('sortClickPost')
+            el2.classList.add('triangle-down')
+            el2.classList.remove('triangle-up')
         }
     }
 
@@ -54,7 +63,9 @@ function Employees() {
         const filt = filteredList.filter(a => a.location.city.toLowerCase() === data)
 
         if (filt.length > 0) {
-            setDisplayedList({results: filt})
+            if(displayedList.sortOrder === "ascend") {setDisplayedList({results: filt, sortOrder: "ascend"})}
+            else if (displayedList.sortOrder === "descend") {setDisplayedList({results: filt, sortOrder: "descend"})}
+            else {setDisplayedList({results: filt})}
             el.style.display = 'none'
         } else {
             el.style.display = 'block'
@@ -67,7 +78,9 @@ function Employees() {
         event.preventDefault()
         var el = document.getElementById('none')
         el.style.display = 'none'
-        setDisplayedList({results: employees})
+        if(displayedList.sortOrder === "ascend") {setDisplayedList({results: employees, sortOrder: "ascend"})}
+        else if (displayedList.sortOrder === "descend") {setDisplayedList({results: employees, sortOrder: "descend"})}
+        else {setDisplayedList({results: employees})}
     }
 
     return (
@@ -90,7 +103,7 @@ function Employees() {
         <table>
             <thead>
             <tr>
-                <th className="sortClick" onClick={sortByName}>Name</th>
+                <th id="here" onClick={sortByName}>Name <div id="triangle"></div></th>
                 <th>Email</th>
                 <th>City</th>
                 <th>Phone number</th>
