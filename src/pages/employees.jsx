@@ -6,23 +6,91 @@ import axios from 'axios'
 function Employees() {
 
     const [employees, setEmployees] = useState([])
+    const [displayedList, setDisplayedList] = useState({
+        results: [],
+        sortOrder: ""
+    })
 
     useEffect(() => {
         async function fetchData(){
         const res = await axios.get("https://randomuser.me/api/?results=30")
         setEmployees(res.data.results)
+        setDisplayedList({results: res.data.results})
         }
         fetchData()
-        console.log(employees)
     },[] )
+
+    const sortByName = () => {
+  
+        const sortedEmployees = displayedList.results.sort((a, b) => {
+            if (b.name.first > a.name.first) {
+                return -1
+            }
+            if (a.name.first > b.name.first) {
+                return 1
+            }
+            return 0
+        });
+        if (displayedList.sortOrder === "descend") {
+            sortedEmployees.reverse()
+            setDisplayedList({ 
+                results: sortedEmployees,
+                sortOrder: "ascend" 
+            })
+        } else {
+            setDisplayedList({ 
+                results: sortedEmployees,
+                sortOrder: "descend" 
+            })
+        }
+    }
+
+    const submitForm = event => {
+        event.preventDefault()
+        let filteredList = employees;
+        var el = document.getElementById('none')
+
+        let data = document.getElementById('form').value.toLowerCase()
+        const filt = filteredList.filter(a => a.location.city.toLowerCase() === data)
+
+        if (filt.length > 0) {
+            setDisplayedList({results: filt})
+            el.style.display = 'none'
+        } else {
+            el.style.display = 'block'
+        }
+
+        document.getElementById('form').value = ""
+    }
+
+    const reset = event => {
+        event.preventDefault()
+        var el = document.getElementById('none')
+        el.style.display = 'none'
+        setDisplayedList({results: employees})
+    }
 
     return (
         <>
         <div className="jumbotron">Employee directory</div>
+        <h6 id="none">No results</h6>
+        <input id="form" list="cities" placeholder="Filter by city"></input>
+        <datalist id="cities">
+            {displayedList.results.map((person,idx) => {
+                return (
+                        <option key={idx} value={person.location.city}/>
+                    )
+                })
+            }
+        </datalist>
+        <div className="btns">
+            <button onClick={submitForm}>Search</button>
+            <button onClick={reset}>Reset</button>
+        </div>
         <table>
             <thead>
             <tr>
-                <th>Name</th>
+                <th className="sortClick" onClick={sortByName}>Name</th>
                 <th>Email</th>
                 <th>City</th>
                 <th>Phone number</th>
@@ -30,19 +98,20 @@ function Employees() {
             </tr>
             </thead>
 
-        {employees.map((person,idx) => { 
+        {displayedList.results.map((person,idx) => { 
             return (
                 <tbody key={idx}>
                 <tr>
-                    <td>{person.name.first}</td>
+                    <td>{person.name.first} {person.name.last}</td>
                     <td>{person.email}</td>
                     <td>{person.location.city}</td>
                     <td>{person.phone}</td>
-                    <td><img src={person.picture.thumbnail}/></td>
+                    <td><img src={person.picture.thumbnail} alt="Thumbnail"/></td>
                 </tr>
                 </tbody>
                 )
-            })}
+            })
+        }
         </table>
         </>
     )

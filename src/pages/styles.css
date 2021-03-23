@@ -1,6 +1,6 @@
 .jumbotron {
     height:300px;
-    color: white;
+    color: rgb(134, 154, 189);
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -19,4 +19,25 @@ table, td, th {
 
 td, th{ 
     padding: 10px;
+}
+
+.sortClick{
+    cursor: pointer;
+}
+
+#none {
+    color:rgb(190, 94, 238);
+    margin-bottom: 20px;
+    margin-top: 0;
+    display: none;
+}
+
+input {
+    margin-bottom: 5px;
+}
+
+.btns {
+    display: inline-flex;
+    margin-bottom: 10px;
+    gap:12px;
 }
